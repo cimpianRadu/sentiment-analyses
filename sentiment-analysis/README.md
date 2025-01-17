@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+## Setup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Install dependencies
+
+```
+$ npm i
+```
+
+### Environment setup
+
+In order to run the app successfully, you need to create a **.env** file and add these variables:
+
+- REACT_APP_REGION
+- REACT_APP_ACCESS_KEY_ID
+- REACT_APP_SECRET_ACCESS_KEY
+
+> ⚠️ Create your AWS account or reach out for help
 
 ## Available Scripts
 
@@ -16,33 +30,22 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Run the tests.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> ⚠️ Not ready for production, TBH
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Observations
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Code structure
 
-### `npm run eject`
+My understanding is that most of the code should be included in **App.tsx**. I took the liberty to create some _types_ file, _aws-config_ and other little helpers. But all the "React" code can be found in App.tsx.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I didn't go crazy for small componenta that can be composed etc. I kept it simple.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I hope I understood correctly 😅
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Code styling
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-.env
+I didn't spend much time on styling so the App has a quite rudimentar UI. Also the CSS can be found in the global file. Nothing fancy here
