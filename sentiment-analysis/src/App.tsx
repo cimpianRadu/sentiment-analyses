@@ -1,8 +1,8 @@
 import React from "react";
 
 import "./App.css";
-import { comprehend } from "./awsConfig.ts";
-import { SentimentResponse } from "./types.ts";
+import { comprehend } from "./awsConfig";
+import { SentimentResponse } from "./types";
 
 /**
  * Probably I would move this outiside App.tsx

@@ -1,5 +1,5 @@
-import { sortResults } from "./App.tsx";
-import { SentimentResponse } from "./types.ts";
+import { sortResults } from "./App";
+import { SentimentResponse } from "./types";
 
 describe("sortResults", () => {
   it("should sort results by the highest sentiment score", () => {
