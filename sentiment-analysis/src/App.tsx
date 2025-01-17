@@ -22,12 +22,40 @@ const sentimentOrder: Record<AWS.Comprehend.Types.SentimentType, number> = {
   NEGATIVE: 1,
 };
 
-const sortResults = (data: SentimentResponse[]): SentimentResponse[] => {
+export const sortResults = (data: SentimentResponse[]): SentimentResponse[] => {
   return data.sort((a, b) => {
-    const aSentiment = a.sentiment || "NEGATIVE";
-    const bSentiment = b.sentiment || "NEGATIVE";
+    const aPositiveScore = a.sentimentScore?.Positive || 0;
+    const bPositiveScore = b.sentimentScore?.Positive || 0;
 
-    return sentimentOrder[bSentiment] - sentimentOrder[aSentiment];
+    if (aPositiveScore !== bPositiveScore) {
+      return bPositiveScore - aPositiveScore;
+    }
+
+    const aMixedScore = a.sentimentScore?.Mixed || 0;
+    const bMixedScore = b.sentimentScore?.Mixed || 0;
+
+    if (aMixedScore !== bMixedScore) {
+      return bMixedScore - aMixedScore;
+    }
+
+    const aNeutralScore = a.sentimentScore?.Neutral || 0;
+    const bNeutralScore = b.sentimentScore?.Neutral || 0;
+
+    if (aNeutralScore !== bNeutralScore) {
+      return bNeutralScore - aNeutralScore;
+    }
+
+    const aNegativeScore = a.sentimentScore?.Negative || 0;
+    const bNegativeScore = b.sentimentScore?.Negative || 0;
+
+    if (aNegativeScore !== bNegativeScore) {
+      return bNegativeScore - aNegativeScore;
+    }
+
+    /**
+     * if all scores are equal, sort by sentiment
+     */
+    return sentimentOrder[b.sentiment || "NEGATIVE"] - sentimentOrder[a.sentiment || "NEGATIVE"];
   });
 };
 
@@ -46,7 +74,6 @@ function App() {
   const [error, setError] = React.useState<string | null>(null);
 
   const onAnalyse = async () => {
-    console.log("onAnalyse", process.env.AWS_REGION);
     if (!input) {
       /**
        * Do some input validation, maybe display feedback to user
